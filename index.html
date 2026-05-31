@@ -194,7 +194,7 @@
         .book-half { width: 50%; height: 100%; position: relative; background: #fff; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); border-radius: 5px; }
         .book-half img { width: 100%; height: 100%; object-fit: cover; border-radius: 5px; }
         .book--page { position: absolute; right: 0; width: 50%; height: 100%; transform-style: preserve-3d; transform-origin: left center; transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1); z-index: 5; border-radius: 5px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-        .flip-front, .flip-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; background: #fff; border-radius: 5px; overflow: hidden; }
+        .flip-front, .flip-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: #fff; border-radius: 5px; overflow: hidden; z-index: 1; }
         .flip-front img, .flip-back img { width: 100%; height: 100%; object-fit: cover; }
         .flip-back { transform: rotateY(180deg); }
         .book-flip-page.flipped { transform: rotateY(-180deg); box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
@@ -221,18 +221,20 @@
             .nav-links { justify-content: center; }
             .nav-links a { font-size: 14px; padding: 8px 15px; }
 
-           /* 2. Home Page Resize (Fixed Overlap & Spacing) */
+         /* 2. Home Page Resize (Fixed Text Sizes & Tightened Gaps) */
             #home { padding: 100px 5% 50px 8%; justify-content: flex-start; align-items: flex-start; }
             .hero-content { width: 100%; display: flex; flex-direction: column; align-items: flex-start; text-align: left; margin-top: 20px; }
-            .main-title-block { flex-direction: column; align-items: flex-start; margin-bottom: 5px; }
-            .ai-part { margin-right: 0; margin-bottom: 10px; line-height: 1; }
-            .ai-text { font-size: 100px; line-height: 1; }
-            .crown-icon { font-size: 30px; top: -30px; left: 50%; transform: translateX(-50%); }
-            .words-part { margin-top: 0px; }
-            .video-film-text { font-size: 45px; background-size: 200% auto; line-height: 1.1; margin-bottom: 5px; }
-            .maker-text { font-size: 55px; letter-spacing: 0; line-height: 1; margin-bottom: 10px; }
-            .subtitle-divider { justify-content: flex-start; margin: 10px 0 15px 0; }
-            .name-text { font-size: 30px; margin-left: 0; }
+            .main-title-block { flex-direction: column; align-items: flex-start; margin-bottom: 0px; }
+            .ai-part { margin-right: 0; margin-bottom: 0px; line-height: 0.9; }
+            .ai-text { font-size: 90px; line-height: 0.9; }
+            .crown-icon { font-size: 25px; top: -20px; left: 50%; transform: translateX(-50%); }
+            .words-part { margin-top: 0px; display: flex; flex-direction: column; }
+            
+            /* Tightly packed text */
+            .video-film-text { font-size: 38px; background-size: 200% auto; line-height: 1; margin-bottom: 0px; }
+            .maker-text { font-size: 48px; letter-spacing: 0; line-height: 1; margin-bottom: 0px; }
+            .subtitle-divider { justify-content: flex-start; margin: 8px 0 10px 0; font-size: 11px; }
+            .name-text { font-size: 26px; margin-left: 0; margin-top: 0; }
             
             /* 3. Section Titles & Spacing */
             section { min-height: auto; padding-top: 100px; padding-bottom: 50px; }
@@ -274,24 +276,31 @@
             .contact-info-item { font-size: 12px; gap: 5px; }
             .contact-info-item img { width: 20px; height: 20px; }
             
-            /* 7. Popups (Book Viewer Fix for Mobile) */
+           /* 7. Popups (Book Viewer Fix for Mobile) */
             .book-container { 
                 width: 90vw; 
                 height: 60vw; 
                 flex-direction: row; 
-                margin-top: -60px; /* Pulls the book up slightly to make room for buttons */
+                margin-top: 0; 
+                perspective: 1500px; /* Fixes the 3D physics on mobile */
             }
             .book-half { width: 50%; height: 100%; border-radius: 5px; margin-bottom: 0; }
             .book-flip-page { display: block; }
+            
+            /* Buttons put directly under the book */
             .book-controls { 
-                position: absolute; 
-                bottom: 20px; /* Forces buttons safely inside the screen */
+                position: relative; 
+                bottom: auto;
+                left: auto;
+                transform: none; 
                 width: 100%; 
+                margin-top: 25px; /* Creates a perfect 25px gap right below the book */
                 justify-content: center; 
                 flex-direction: row; 
-                gap: 10px; 
+                gap: 15px; 
+                z-index: 10005;
             }
-            .book-btn { padding: 10px 15px; font-size: 11px; }
+            .book-btn { padding: 12px 20px; font-size: 13px; }
         } 
     </style>
 </head>
