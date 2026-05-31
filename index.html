@@ -233,7 +233,7 @@
             /* Tightly packed text */
             .video-film-text { font-size: 38px; background-size: 200% auto; line-height: 1; margin-bottom: 0px; }
             .maker-text { font-size: 48px; letter-spacing: 0; line-height: 1; margin-bottom: 0px; }
-            .subtitle-divider { justify-content: flex-start; margin: 4px 0 5px 0; font-size: 8px; }
+            .subtitle-divider { justify-content: flex-start; margin: 8px 0 10px 0; font-size: 8px; }
             .name-text { font-size: 26px; margin-left: 0; margin-top: 0; }
             
             /* 3. Section Titles & Spacing */
@@ -276,31 +276,36 @@
             .contact-info-item { font-size: 12px; gap: 5px; }
             .contact-info-item img { width: 20px; height: 20px; }
             
-           /* 7. Popups (Book Viewer Fix for Mobile) */
+        /* 7. Popups (Book Viewer - Desktop-Style Buttons & No Flip Animation) */
             .book-container { 
                 width: 90vw; 
                 height: 60vw; 
                 flex-direction: row; 
-                margin-top: 0; 
-                perspective: 1500px; /* Fixes the 3D physics on mobile */
+                margin-top: -40px; 
+                perspective: none !important; /* Turns off buggy mobile 3D physics */
             }
             .book-half { width: 50%; height: 100%; border-radius: 5px; margin-bottom: 0; }
             .book-flip-page { display: block; }
+
+            /* Removes the 3D flipping animation so the page switches instantly and cleanly */
+            .book-flip-page { transition: none !important; box-shadow: none !important; }
+            .book-flip-page.flipped { transform: rotateY(-180deg) !important; box-shadow: none !important; }
             
-            /* Buttons put directly under the book */
+            /* Locks buttons strictly to the bottom of the screen, EXACTLY like Desktop mode */
             .book-controls { 
-                position: relative; 
-                bottom: auto;
-                left: auto;
-                transform: none; 
-                width: 100%; 
-                margin-top: 25px; /* Creates a perfect 25px gap right below the book */
-                justify-content: center; 
+                position: absolute !important; 
+                bottom: 30px !important; 
+                left: 50% !important; 
+                transform: translateX(-50%) !important; 
+                width: max-content; 
+                display: flex;
                 flex-direction: row; 
-                gap: 15px; 
+                justify-content: center;
+                gap: 20px; 
                 z-index: 10005;
+                margin-top: 0;
             }
-            .book-btn { padding: 12px 20px; font-size: 13px; }
+            .book-btn { padding: 12px 25px; font-size: 13px; }
         } 
     </style>
 </head>
