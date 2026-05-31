@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1366">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anisha Rajan - AI Filmmaker & Editor Portfolio</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
         /* === BASE & RESET === */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Playfair Display', serif; }
 
-        body, html { min-width: 1366px; overflow-x: hidden; background-color: #050505; scroll-behavior: smooth; }
+       body, html { width: 100%; overflow-x: hidden; background-color: #050505; scroll-behavior: smooth; }
 
         /* === FIXED HEADER ELEMENTS === */
         .static-logo { position: fixed; top: 35px; left: 50px; font-size: 18px; font-weight: 600; letter-spacing: 2px; color: #ccc; z-index: 1000; text-transform: uppercase; }
@@ -201,6 +201,69 @@
         .book-controls { position: absolute; bottom: 50px; display: flex; gap: 20px; }
         .book-btn { font-family: sans-serif; font-size: 14px; font-weight: bold; color: white; padding: 12px 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.5); background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s; }
         .book-btn:hover { background: #d4af37; color: black; border-color: #d4af37; }
+
+        /* =========================================
+           📱 MOBILE RESPONSIVE DESIGN FIX
+           ========================================= */
+        @media screen and (max-width: 1024px) {
+            /* 1. Header & Navigation */
+            .static-logo { display: none; } /* Hides logo to save screen space */
+            .glass-nav-container { width: 90%; top: 15px; overflow-x: auto; white-space: nowrap; padding: 10px; }
+            .nav-links { justify-content: flex-start; }
+            .nav-links a { font-size: 14px; padding: 8px 15px; }
+
+            /* 2. Home Page Resize */
+            #home { padding: 120px 5% 50px 5%; justify-content: center; }
+            .hero-content { width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+            .main-title-block { flex-direction: column; align-items: center; margin-right: 0; }
+            .ai-part { margin-right: 0; margin-bottom: 10px; }
+            .ai-text { font-size: 130px; }
+            .crown-icon { font-size: 35px; top: -30px; }
+            .video-film-text { font-size: 50px; background-size: 100% auto; }
+            .maker-text { font-size: 65px; letter-spacing: 0; }
+            .name-text { font-size: 35px; margin-left: 0; }
+            .subtitle-divider { justify-content: center; margin-left: 0; }
+
+            /* 3. Section Titles & Spacing */
+            section { min-height: auto; padding-top: 100px; padding-bottom: 50px; }
+            .work-title { font-size: 45px; text-align: center; margin-left: 0; margin-bottom: 20px; }
+            
+            /* 4. Carousels & Sliders */
+            .carousel-wrapper { padding: 0; }
+            .slide-arrow { display: none; } /* Hides arrows on mobile; users swipe naturally */
+            .carousel-track { width: 100%; padding: 20px; }
+            
+            /* Masonry (Paintings) Layout Fix for Mobile */
+            .masonry-track { height: auto; flex-direction: row; flex-wrap: nowrap; overflow-x: auto; }
+            .glass-frame { width: 280px !important; height: 350px !important; }
+
+            /* 5. Services Page */
+            #services { flex-direction: column; padding: 100px 5% 50px; }
+            .services-huge-title { font-size: 60px; margin-bottom: 20px; text-align: center; }
+            .services-wrapper { width: 100%; }
+            .services-glass-box { padding: 30px 20px; }
+            .services-glass-box li { font-size: 16px; margin-bottom: 10px; }
+            .services-glass-box li::before { font-size: 20px; margin-right: 10px; }
+
+            /* 6. Contact Page */
+            #contact { padding: 100px 5% 50px; }
+            .contact-wrapper { width: 100%; }
+            .contact-glass-box { padding: 30px 20px; align-items: center; text-align: center; }
+            .contact-name { font-size: 35px; }
+            .contact-detail { font-size: 18px; }
+            .tools-title { font-size: 26px; }
+            .tools-row { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .tool-item img { width: 50px; height: 50px; }
+            .tool-item span { font-size: 12px; }
+            .contact-footer { flex-direction: column; gap: 20px; align-items: center; }
+            .contact-info-item { font-size: 16px; }
+
+            /* 7. Popups (Lightbox / Book) */
+            .book-container { width: 95vw; height: auto; flex-direction: column; }
+            .book-half { width: 100%; height: 300px; border-radius: 5px; margin-bottom: 10px; }
+            .book-flip-page { display: none; } /* Disables 3D flip animation on mobile, shows static inside pages to prevent layout breaking */
+            .book-controls { position: relative; bottom: 0; margin-top: 15px; }
+        }
     </style>
 </head>
 <body>
