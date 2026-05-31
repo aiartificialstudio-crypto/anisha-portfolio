@@ -188,21 +188,48 @@
         #lightbox-img { max-width: 90%; max-height: 90%; border-radius: 12px; border: 2px solid #d4af37; box-shadow: 0 0 40px rgba(212, 175, 55, 0.3); transform: scale(0.9); transition: transform 0.3s ease; }
         .fullscreen-overlay.active #lightbox-img { transform: scale(1); }
 
-        /* E-Book 3D Simulator Layout */
-        .book-container { position: relative; width: 800px; height: 550px; perspective: 2500px; display: flex; transform: scale(0.9); transition: transform 0.4s ease; }
+    /* E-Book 3D Simulator Layout */
+        .book-container { 
+            position: relative; width: 800px; height: 550px; 
+            perspective: 2500px; display: flex; 
+            transform: scale(0.9); transition: transform 0.4s ease; 
+            transform-style: preserve-3d; /* CRITICAL FIX: Forces browser to render 3D depth */
+        }
         .fullscreen-overlay.active .book-container { transform: scale(1); }
-      .book-half { width: 50%; height: 100%; position: relative; background: #fff; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); border-radius: 5px; z-index: 1; }
-
-.book-flip-page { position: absolute; right: 0; top: 0; width: 50%; height: 100%; transform-style: preserve-3d; transform-origin: left center; transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1); z-index: 10; border-radius: 5px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-
-.flip-front, .flip-back { position: absolute; top: 0; left: 0; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: #fff; border-radius: 5px; overflow: hidden; z-index: 2; }
-        .book--page { position: absolute; right: 0; width: 50%; height: 100%; transform-style: preserve-3d; transform-origin: left center; transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1); z-index: 5; border-radius: 5px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-        .flip-front, .flip-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: #fff; border-radius: 5px; overflow: hidden; z-index: 1; }
-        .flip-front img, .flip-back img { width: 100%; height: 100%; object-fit: cover; }
-        .flip-back { transform: rotateY(180deg); }
+        .book-half { 
+            width: 50%; height: 100%; position: relative; 
+            background: #fff; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); 
+            border-radius: 5px; z-index: 1; 
+        }
+        .book-flip-page { 
+            position: absolute; right: 0; top: 0; width: 50%; height: 100%; 
+            transform-style: preserve-3d; transform-origin: left center; 
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1); 
+            z-index: 10; border-radius: 5px; box-shadow: 0 0 30px rgba(0,0,0,0.5); 
+        }
+        
+        /* CRITICAL FIX: Forces layers to hide backsides and never overlap */
+        .flip-front, .flip-back { 
+            position: absolute; width: 100%; height: 100%; 
+            backface-visibility: hidden; -webkit-backface-visibility: hidden; 
+            background: #fff; border-radius: 5px; overflow: hidden; 
+            top: 0; left: 0;
+        }
+        .flip-front { transform: rotateY(0deg); z-index: 2; }
+        .flip-back { transform: rotateY(180deg); z-index: 1; }
+        
+        .flip-front img, .flip-back img, .book-half img { width: 100%; height: 100%; object-fit: cover; }
         .book-flip-page.flipped { transform: rotateY(-180deg); box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
-        .book-controls { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; z-index: 10005; width: max-content; }
-        .book-btn { font-family: sans-serif; font-size: 14px; font-weight: bold; color: white; padding: 12px 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.5); background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s; }
+        
+        .book-controls { 
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); 
+            display: flex; gap: 20px; z-index: 10005; width: max-content; 
+        }
+        .book-btn { 
+            font-family: sans-serif; font-size: 14px; font-weight: bold; color: white; 
+            padding: 12px 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.5); 
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s; 
+        }
         .book-btn:hover { background: #d4af37; color: black; border-color: #d4af37; }
 
       /* =========================================
@@ -279,44 +306,42 @@
             .contact-info-item { font-size: 12px; gap: 5px; }
             .contact-info-item img { width: 20px; height: 20px; }
             
-       /* 7. Popups (Restoring the Desktop 3D Flip Book for Mobile) */
+     /* 7. Popups (Book Viewer fully restored for mobile) */
             .book-container { 
                 width: 90vw; 
-                height: 62vw; /* Exact mathematical aspect ratio of the desktop book */
+                height: 60vw; /* Perfect open book ratio for mobile screens */
                 flex-direction: row; 
-                margin-top: -40px; 
-                perspective: 2500px !important; /* Restores 3D physics */
-                transform-style: preserve-3d;
+                margin-top: -60px; /* Pulls book up slightly */
+                perspective: 1500px !important; /* Re-enables 3D physics */
             }
-            .book-half { 
-                width: 50%; 
-                height: 100%; 
-                margin-bottom: 0; 
-            }
+            .book-half { width: 50%; height: 100%; border-radius: 5px; margin-bottom: 0; }
+            
+            /* Overrides the previous disable codes and turns animation back ON */
             .book-flip-page { 
                 display: block; 
-                /* Restores the beautiful 1-second flipping animation */
                 transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1) !important; 
+                box-shadow: 0 0 30px rgba(0,0,0,0.5) !important;
             }
             .book-flip-page.flipped { 
                 transform: rotateY(-180deg) !important; 
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5) !important; 
             }
             
-            /* Buttons locked safely to the bottom of the screen */
+            /* Locks buttons strictly to the bottom center, avoiding overlaps */
             .book-controls { 
                 position: absolute !important; 
-                bottom: 25px !important; 
+                bottom: 20px !important; 
                 left: 50% !important; 
                 transform: translateX(-50%) !important; 
                 width: max-content; 
                 display: flex;
                 flex-direction: row; 
                 justify-content: center;
-                gap: 20px; 
+                gap: 15px; 
                 z-index: 10005;
                 margin-top: 0;
             }
-            .book-btn { padding: 12px 25px; font-size: 13px; }
+            .book-btn { padding: 12px 20px; font-size: 13px; }
         } 
     </style>
 </head>
