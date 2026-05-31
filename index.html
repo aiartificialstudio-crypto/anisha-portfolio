@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1366">
+    <title>Anisha Rajan - AI Filmmaker & Editor Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === BASE & RESET === */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Playfair Display', serif; }
+
+        body, html { min-width: 1366px; overflow-x: hidden; background-color: #050505; scroll-behavior: smooth; }
+
+        /* === FIXED HEADER ELEMENTS === */
+        .static-logo { position: fixed; top: 35px; left: 50px; font-size: 18px; font-weight: 600; letter-spacing: 2px; color: #ccc; z-index: 1000; text-transform: uppercase; }
+
+        .glass-nav-container {
+            position: fixed; top: 25px; left: 50%; transform: translateX(-50%); z-index: 1000;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 50px; padding: 8px 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .nav-links { list-style: none; display: flex; align-items: center; gap: 15px; }
+        .nav-links li { position: relative; }
+        
+        .nav-links a {
+            text-decoration: none; color: #000; font-size: 16px; font-weight: 500;
+            padding: 10px 25px; border-radius: 30px; display: inline-block; transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .nav-links li:not(:last-child)::after { content: '|'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: #555; pointer-events: none; }
+        .nav-links a:hover { transform: scale(1.15); }
+        .nav-links a.active { background: linear-gradient(135deg, #a00000, #500000); color: white; box-shadow: 0 4px 15px rgba(160, 0, 0, 0.4); }
+
+        /* === SECTIONS SETUP === */
+        section { min-height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+
+        /* === PAGE 1: HOME === */
+        #home { align-items: flex-start; padding-left: 8%; }
+        .video-bg-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.7) 0%, rgba(0,0,0,0.6) 80%); }
+        .video-bg-container video, .video-bg-container img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -2; }
+        .main-title-block { display: flex; align-items: flex-end; margin-bottom: 20px; }
+        .ai-part { position: relative; line-height: 0.8; margin-right: 15px; }
+        .crown-icon { position: absolute; top: -40px; left: 50%; transform: translateX(-50%); font-size: 45px; color: #d4af37; }
+        .ai-text { font-size: 220px; font-weight: 700; background: linear-gradient(to bottom, #cc0000, #660000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .words-part { display: flex; flex-direction: column; line-height: 0.9; }
+        .video-film-text { font-size: 85px; font-weight: 500; background: linear-gradient(to right, #b8860b 20%, #fff8dc 40%, #ffd700 60%, #b8860b 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
+        @keyframes shine { to { background-position: 200% center; } }
+        .maker-text { font-size: 110px; font-weight: 700; color: #1c352d; letter-spacing: -2px; }
+        .subtitle-divider { display: flex; align-items: center; gap: 15px; margin: 20px 0 30px 15px; font-family: sans-serif; letter-spacing: 4px; font-size: 14px; color: #333; }
+        .subtitle-divider::before, .subtitle-divider::after { content: ''; height: 1px; width: 80px; background-color: #888; }
+        .subtitle-divider span { color: #d4af37; margin: 0 10px; }
+        .name-text { font-size: 45px; font-weight: 600; color: #7a0000; margin-left: 15px; letter-spacing: 2px; } 
+
+        /* === PAGES 2-8: BACKGROUND IMAGES CONFIGURATION === */
+        /* Note: "fixed" has been replaced with "no-repeat" so backgrounds scroll normally */
+         #home { background: url('your-home-bg.jpg') center/cover no-repeat; padding-top: 80px; }
+        #work { background: url('your-work-bg.jpg') center/cover no-repeat; padding-top: 80px; }
+        #ai-series { background: url('your-reels-bg.jpg') center/cover no-repeat; padding-top: 80px; }
+        #ai-reels { background: url('your-reels-bg.jpg') center/cover no-repeat; padding-top: 80px; }
+        #ai-paintings { background: url('your-reels-bg.jpg') center/cover no-repeat; padding-top: 80px; }
+        #ai-templates { background: url('your-reels-bg.jpg') center/cover no-repeat; padding-top: 80px; }
+        #services { background: url('your-reels-bg.jpg') center/cover no-repeat; padding-top: 80px; }
+        #contact { background: url('your-reels-bg.jpg') center/cover no-repeat; padding-top: 80px; }
+
+       /* Section Titles Styling (Now with Golden Shine!) */
+.work-title { 
+    font-size: 60px; 
+    text-align: left; 
+    margin-left: 8%; 
+    margin-bottom: 30px; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    z-index: 2;
+    /* The Golden Shine Effect */
+    background: linear-gradient(to right, #b8860b 20%, #fff8dc 40%, #ffd700 60%, #b8860b 80%); 
+    background-size: 200% auto; 
+    color: #000;
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    animation: shine 3s linear infinite;
+    /* Optional: A slight drop shadow to make the gold pop off the background */
+    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.5));
+}
+
+        /* === UNIVERSAL HORIZONTAL SLIDER === */
+        .carousel-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; padding: 0 3%; }
+        .slide-arrow { background: transparent; border: none; color: #ffffff; font-size: 60px; font-weight: 300; width: 50px; cursor: pointer; z-index: 10; transition: transform 0.3s ease, color 0.3s ease; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .slide-arrow:hover { transform: scale(1.2); color: #000; }
+        .carousel-track { display: flex; gap: 30px; overflow-x: auto; scroll-behavior: smooth; padding: 40px 20px; width: 90%; align-items: center; -ms-overflow-style: none; scrollbar-width: none; }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        
+        /* Video Posters (Pages 2, 3, 4) */
+        .poster-card { min-width: 280px; height: 400px; border-radius: 10px; position: relative; background-color: #111; border: 2px solid rgba(255, 255, 255, 0.3); transition: all 0.4s ease; display: flex; justify-content: center; }
+        .poster-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; opacity: 12.8; transition: opacity 0.3s ease; }
+        .poster-card:hover { transform: scale(1.05); border: 2px solid #d4af37; box-shadow: 0 15px 35px rgba(211, 211, 211, 0.4); z-index: 2; }
+        .poster-card:hover img { opacity: 1; }
+
+        /* Liquid Glass Buttons */
+        .glass-btn { position: absolute; bottom: -20px; font-family: sans-serif; font-size: 14px; font-weight: bold; color: white; text-decoration: none; padding: 12px 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.5); backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; cursor: pointer; text-align: center; }
+        .btn-red { background: linear-gradient(135deg, rgba(160,0,0,0.8), rgba(80,0,0,0.8)); pointer-events: none; }
+        .btn-blue { background: linear-gradient(135deg, rgba(0,50,150,0.7), rgba(0,20,80,0.7)); }
+        .btn-blue:hover { transform: scale(1.15); background: linear-gradient(135deg, rgba(30,144,255,0.9), rgba(0,50,150,0.9)); box-shadow: 0 0 20px rgba(30,144,255,0.6); }
+        .btn-blue.clicked { background: linear-gradient(135deg, rgba(0,180,0,0.9), rgba(0,100,0,0.9)) !important; box-shadow: 0 0 20px rgba(0,180,0,0.6) !important; transform: scale(1.05); }
+
+        /* === MASONRY & GLASS PANELS WITH WAVE HOVER EFFECT (Pages 5 & 6) === */
+        .masonry-track { flex-direction: column; flex-wrap: wrap; align-content: flex-start; height: 550px; gap: 20px; }
+        .size-landscape { width: 340px; height: 220px; }
+        .size-portrait { width: 260px; height: 380px; }
+        .size-square { width: 260px; height: 260px; }
+        .size-tall { width: 300px; height: 500px; }
+        .ratio-4-3 { width: 320px; height: 240px; }
+        .ratio-3-4 { width: 270px; height: 360px; }
+        
+        .glass-frame { position: relative; border-radius: 12px; cursor: pointer; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.3); box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); overflow: hidden; flex-shrink: 0; transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; }
+        .glass-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 21.5; transition: opacity 0.4s ease; }
+        
+        /* Continuous Staggered Pulse Wave Hover Animation */
+        @keyframes smoothWaveHover { 0% { transform: scale(1); border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); } 50% { transform: scale(1.06); border-color: #d4af37; box-shadow: 0 15px 35px rgba(211, 211, 211, 0.5), 0 0 25px rgba(212, 175, 55, 0.6); } 100% { transform: scale(1); border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); } }
+        .glass-frame:hover { animation: smoothWaveHover 2s ease-in-out infinite; z-index: 5; }
+        .glass-frame:hover img { opacity: 1; }
+
+        
+
+       /* === PAGE 7: SERVICES SPECIFIC === */
+        #services { display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 0 10%; }
+        
+        /* Changed color to pure white (#ffffff) and updated shadow so it pops */
+        .services-huge-title { 
+    font-size: 160px; 
+    line-height: 1; 
+    z-index: 2; 
+    /* The Golden Shine Effect */
+    background: linear-gradient(to right, #b8860b 20%, #fff8dc 40%, #ffd700 60%, #b8860b 80%); 
+    background-size: 200% auto; 
+    color: #000;
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    animation: shine 3s linear infinite;
+    filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.6));
+}
+        
+        .services-wrapper { width: 700px; }
+        .services-glass-box {
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-radius: 17px; padding: 40px 50px; width: 100%; height: 100%; box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+        }
+        .services-glass-box ul { list-style: none; }
+        
+        /* Changed list text to pure white (#ffffff) */
+        .services-glass-box li { font-size: 24px; color: #ffffff; margin-bottom: 15px; display: flex; align-items: center; font-weight: 500; text-shadow: 1px 1px 5px rgba(0,0,0,0.8); }
+        
+        /* Changed bullet points to pure white (#ffffff) */
+        .services-glass-box li::before { content: '•'; color: #ffffff; font-size: 30px; margin-right: 15px; }
+
+      /* === PAGE 8: ABOUT & CONTACT SPECIFIC === */
+        #contact { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .contact-wrapper { width: 75%; max-width: 1000px; } 
+        .contact-glass-box {
+            /* Changed to a darker glass so the white text pops */
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: 17px; padding: 40px 60px; width: 100%; height: 100%; box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column; 
+            color: #ffffff; /* Changed main text to white */
+        }
+        .contact-name { font-size: 45px; font-weight: 700; margin-bottom: 5px; }
+        .contact-detail { font-size: 24px; font-family: sans-serif; font-weight: 500; margin-bottom: 8px; }
+        .tools-title { font-size: 32px; font-weight: 600; margin-top: 35px; margin-bottom: 25px; }
+        .tools-row { display: flex; gap: 20px; flex-wrap: nowrap; justify-content: space-between; align-items: flex-start; }
+        .tool-item { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+        .tool-item img { width: 65px; height: 65px; border-radius: 15px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .tool-item span { font-family: sans-serif; font-size: 15px; font-weight: 600; color: #ffffff; line-height: 1.2; } /* Tool text to white */
+        .contact-divider { width: 100%; height: 1px; background: rgba(255, 255, 255, 0.3); margin: 35px 0; } /* Thin line changed to white */
+        .contact-footer { display: flex; justify-content: flex-start; gap: 60px; }
+        .contact-info-item { display: flex; align-items: center; gap: 15px; font-family: sans-serif; font-size: 22px; font-weight: 600; color: #ffffff; text-decoration: none; transition: transform 0.3s ease; }
+.contact-info-item:hover { transform: scale(1.05); } /* Adds a nice zoom effect when clicked */
+.contact-info-item img { width: 65px; height: 65px; border-radius: 15px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.2); } /* Footer text to white */
+
+        /* === EXPANSION OVERLAYS (Lightboxes & 3D FlipBook) === */
+        .fullscreen-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+        .fullscreen-overlay.active { display: flex; opacity: 1; }
+        .back-btn { position: absolute; top: 35px; left: 50px; font-family: sans-serif; font-size: 14px; font-weight: bold; color: white; padding: 12px 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s ease; z-index: 10000; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
+
+        /* Picture Overlay Frame */
+        #lightbox-img { max-width: 90%; max-height: 90%; border-radius: 12px; border: 2px solid #d4af37; box-shadow: 0 0 40px rgba(212, 175, 55, 0.3); transform: scale(0.9); transition: transform 0.3s ease; }
+        .fullscreen-overlay.active #lightbox-img { transform: scale(1); }
+
+        /* E-Book 3D Simulator Layout */
+        .book-container { position: relative; width: 800px; height: 550px; perspective: 2500px; display: flex; transform: scale(0.9); transition: transform 0.4s ease; }
+        .fullscreen-overlay.active .book-container { transform: scale(1); }
+        .book-half { width: 50%; height: 100%; position: relative; background: #fff; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); border-radius: 5px; }
+        .book-half img { width: 100%; height: 100%; object-fit: cover; border-radius: 5px; }
+        .book-flip-page { position: absolute; right: 0; width: 50%; height: 100%; transform-style: preserve-3d; transform-origin: left center; transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1); z-index: 5; border-radius: 5px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .flip-front, .flip-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; background: #fff; border-radius: 5px; overflow: hidden; }
+        .flip-front img, .flip-back img { width: 100%; height: 100%; object-fit: cover; }
+        .flip-back { transform: rotateY(180deg); }
+        .book-flip-page.flipped { transform: rotateY(-180deg); box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
+        .book-controls { position: absolute; bottom: 50px; display: flex; gap: 20px; }
+        .book-btn { font-family: sans-serif; font-size: 14px; font-weight: bold; color: white; padding: 12px 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.5); background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s; }
+        .book-btn:hover { background: #d4af37; color: black; border-color: #d4af37; }
+    </style>
+</head>
+<body>
+
+    <div class="static-logo">PORTFOLIO</div>
+    
+    <nav class="glass-nav-container">
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+ 
+    <section id="home">
+        <div class="video-bg-container">
+            <video autoplay loop muted playsinline id="bg-video" poster="your-work-bg.jpg">
+                <source src="P1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-content">
+            <div class="main-title-block">
+                <div class="ai-part"><div class="crown-icon">♛</div><div class="ai-text">AI</div></div>
+                <div class="words-part"><div class="video-film-text">Video+Flim</div><div class="maker-text">MAKER</div></div>
+            </div>
+            <div class="subtitle-divider">AI VIDEO EDITOR <span>&diams;</span> FILMMAKER</div>
+            <div class="name-text">ANISHA RAJAN</div>
+        </div>
+    </section>
+
+    <section id="work">
+        <h2 class="work-title title-gold">AI SHORT FILMS</h2>
+        <div class="carousel-wrapper">
+            <button class="slide-arrow left" onclick="scrollCarousel('track1', -1)">&#10094;</button>
+            <div class="carousel-track" id="track1">
+                <div class="poster-card"><img src="poster1.jpg" alt="Film 1"><div class="glass-btn btn-red">COMING SOON</div></div>
+                <div class="poster-card"><img src="poster2.jpg" alt="Film 2"><a href="https://www.studyjainism.com/slides/camunda-devi-5" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+ <div class="poster-card"><img src="poster5.jpg" alt="Film 5"><a href="https://youtu.be/SekfqABz7KA?si=kV6GnZFk4lvER8sL" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+               
+                <div class="poster-card"><img src="poster4.jpg" alt="Film 4"><div class="glass-btn btn-red">COMING SOON</div></div>
+ <div class="poster-card"><img src="poster3.jpg" alt="Film 3"><a href="https://www.studyjainism.com/slides/amar-kumar-4" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+                <div class="poster-card"><img src="poster6.jpg" alt="Film 6"><a href="https://youtu.be/tJseHsXxyYQ?si=KJbuWXGvTBZEgXVZ" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+                 <div class="poster-card"><img src="poster7.jpg" alt="Film 7"><a href="https://youtu.be/wksVWWihDFA?si=lCgV2elq8sMkUWKn" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+                 <div class="poster-card"><img src="poster8.jpg" alt="Film 8"><a href="https://drive.google.com/file/d/19-Z49ky-L6LLQjCrtmk3mnmm1lIDmsrS/view?usp=drivesdk" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+
+            </div>
+            <button class="slide-arrow right" onclick="scrollCarousel('track1', 1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section id="ai-series">
+        <h2 class="work-title">AI SERIES</h2>
+        <div class="carousel-wrapper">
+            <button class="slide-arrow left" onclick="scrollCarousel('track2', -1)">&#10094;</button>
+            <div class="carousel-track" id="track2">
+                <div class="poster-card"><img src="series1.jpg" alt="Series 1"><a href="https://www.studyjainism.com/slides/the-american-chhuha-31" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+                <div class="poster-card"><img src="series2.jpg" alt="Series 2"><a href="https://youtu.be/qLgiNVI_Tqc?si=OSyCKSc0ikXZ6Fu7" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+                <div class="poster-card"><img src="series3.jpg" alt="Series 3"><div class="glass-btn btn-red">COMING SOON</div></div>
+
+                            </div>
+            <button class="slide-arrow right" onclick="scrollCarousel('track2', 1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section id="ai-reels">
+        <h2 class="work-title">AI YOUTUBE REELS</h2>
+        <div class="carousel-wrapper">
+            <button class="slide-arrow left" onclick="scrollCarousel('track3', -1)">&#10094;</button>
+            <div class="carousel-track" id="track3">
+                <div class="poster-card"><img src="reels1.jpg" alt="Reel 1"><a href="https://youtube.com/shorts/AR0ey0CCNvY?si=e73EfqP4V8NGt89N" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+                <div class="poster-card"><img src="reels2.jpg" alt="Reel 2"><a href="https://youtube.com/shorts/axKhfqssP9Q?si=oPlBmFGNcRS25DlA" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+                <div class="poster-card"><img src="reels3.jpg" alt="Reel 3"><a href="https://youtube.com/shorts/nu8SYLCMwag?si=SFCvgHE1ZGT4-lPb" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+                <div class="poster-card"><img src="reels4.jpg" alt="Reel 4"><a href="https://youtube.com/shorts/-YyQKpFRvAg?si=evgpSO7RoOrElFZe" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+<div class="poster-card"><img src="reels5.jpg" alt="Reel 5"><a href="https://youtu.be/oDPLo-8q5o0?si=OnyXio0RGU6S9xOs" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+
+            </div>
+            <button class="slide-arrow right" onclick="scrollCarousel('track3', 1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section id="ai-paintings">
+        <h2 class="work-title">AI Paintings</h2>
+        <div class="carousel-wrapper">
+            <button class="slide-arrow left" onclick="scrollCarousel('track4', -1)">&#10094;</button>
+            <div class="carousel-track masonry-track" id="track4">
+                <div class="glass-frame size-landscape" onclick="openLightbox(this)"><img src="paint1.jpg" alt="Painting 1"></div>
+                <div class="glass-frame size-landscape" onclick="openLightbox(this)"><img src="paint2.jpg" alt="Painting 2"></div>
+                <div class="glass-frame size-square" onclick="openLightbox(this)"><img src="paint3.jpg" alt="Painting 3"></div>
+                <div class="glass-frame size-portrait" onclick="openLightbox(this)"><img src="paint4.jpg" alt="Painting 4"></div>
+                <div class="glass-frame size-tall" onclick="openLightbox(this)"><img src="paint5.jpg" alt="Painting 5"></div>
+                <div class="glass-frame size-portrait" onclick="openLightbox(this)"><img src="paint6.jpg" alt="Painting 6"></div>
+                <div class="glass-frame size-square" onclick="openLightbox(this)"><img src="paint7.jpg" alt="Painting 7"></div>
+            </div>
+            <button class="slide-arrow right" onclick="scrollCarousel('track4', 1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section id="ai-templates">
+        <h2 class="work-title">AI Templates<br>and E Books</h2>
+        <div class="carousel-wrapper">
+            <button class="slide-arrow left" onclick="scrollCarousel('track5', -1)">&#10094;</button>
+            <div class="carousel-track" id="track5">
+                <div class="glass-frame ratio-4-3" onclick="openLightbox(this)"><img src="template1.jpg" alt="Template 1"></div>
+                <div class="glass-frame ratio-4-3" onclick="openLightbox(this)"><img src="template2.jpg" alt="Template 2"></div>
+                <div class="glass-frame ratio-3-4" data-pages="book1-left.jpg , book1-cover.jpg,book1-right.jpg" onclick="openBook(this)"><img src="book1-cover.jpg" alt="Book 1"></div>
+                <div class="glass-frame ratio-3-4" data-pages="book2-left.jpg, book2-cover.jpg, book2-right.jpg" onclick="openBook(this)"><img src="book2-cover.jpg" alt="Book 2"></div>
+               
+            </div>
+            <button class="slide-arrow right" onclick="scrollCarousel('track5', 1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="services-huge-title">Services</div>
+        <div class="animated-border-wrapper services-wrapper">
+            <div class="services-glass-box">
+                <ul>
+                    <li>AI Short Films Production</li>
+                    <li>AI Video Editing</li>
+                    <li>AI Reels Creation</li>
+                    <li>AI Advertisement Production</li>
+                    <li>AI Poster Design</li>
+                    <li>AI Paintings & Digital Artwork</li>
+                    <li>Cinematic AI Content Creation</li>
+                    <li>Social Media Creative Videos</li>
+                    <li>Creative Brand Visuals</li>
+                    <li>Professional AI Storytelling</li>
+                    <li>Custom AI Visual Production</li>
+                    <li>And Many More Creative Services</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="work-title" style="align-self: flex-start; margin-left: 10%; margin-bottom: 20px;">About Me & Contact Us</h2>
+        <div class="animated-border-wrapper contact-wrapper">
+            <div class="contact-glass-box">
+                
+                <div class="contact-name">ANISHA RAJAN</div>
+                <div class="contact-detail">Place: Gujarat, Valsad</div>
+                <div class="contact-detail">Position: Sr. AI Video Editor</div>
+
+                <div class="tools-title">Tools & Expertise</div>
+                
+                <div class="tools-row">
+                    <div class="tool-item"><img src="icon-gemini.png" alt="Google Gemini"><span>Google<br>Gemini</span></div>
+                
+                    <div class="tool-item"><img src="icon-kling.png" alt="Kling AI"><span>Kling AI</span></div>
+                    <div class="tool-item"><img src="icon-higgs.png" alt="Higgsfield"><span>Higgsfield</span></div>
+                    <div class="tool-item"><img src="icon-chatgpt.png" alt="ChatGPT"><span>ChatGPT</span></div>
+                    <div class="tool-item"><img src="icon-claude.png" alt="Claude AI"><span>Claude AI</span></div>
+                    <div class="tool-item"><img src="icon-davinci.png" alt="DaVinci Resolve"><span>DaVinci<br>Resolve</span></div>
+                    <div class="tool-item"><img src="icon-capcut.png" alt="CapCut"><span>CapCut</span></div>
+                    <div class="tool-item"><img src="icon-premiere.png" alt="Premiere Pro"><span>Premiere Pro</span></div>
+ <div class="tool-item"><img src="icon-ps.png" alt="Photoshop"><span>Photoshop</span></div>
+                </div>
+
+                <div class="contact-divider"></div>
+
+               <div class="contact-footer">
+                    <a href="mailto:anisha.kizhuppulli@gmail.com" class="contact-info-item">
+                        <img src="icon-email.png" alt="Email"> anisha.kizhuppulli@gmail.com
+                    </a>
+                    
+                    <a href="https://wa.me/919586614249" target="_blank" class="contact-info-item">
+                        <img src="icon-whatsapp.png" alt="WhatsApp"> +91 9586614249
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <div id="lightbox" class="fullscreen-overlay">
+        <button class="back-btn" onclick="closeLightbox()">&#10094; BACK</button>
+        <img id="lightbox-img" src="" alt="Full View">
+    </div>
+
+    <div id="book-lightbox" class="fullscreen-overlay">
+        <button class="back-btn" onclick="closeBookLightbox()">&#10094; BACK</button>
+        <div class="book-container">
+            <div class="book-half" style="border-radius: 5px 0 0 5px;"><img id="book-img-left" src="" alt="Inside Left"></div>
+            <div class="book-half" style="border-radius: 0 5px 5px 0;"><img id="book-img-right" src="" alt="Inside Right"></div>
+            <div class="book-flip-page" id="flip-page">
+                <div class="flip-front"><img id="book-img-cover" src="" alt="Cover"></div>
+                <div class="flip-back"><img id="book-img-cover-back" src="" alt="Inside Cover"></div>
+            </div>
+        </div>
+        <div class="book-controls">
+            <button class="book-btn" onclick="turnPage(-1)">&#10094; PREV PAGE</button>
+            <button class="book-btn" onclick="turnPage(1)">NEXT PAGE &#10095;</button>
+        </div>
+    </div>
+
+
+    <script>
+        // 1. Scroll Spy Navigation Highlight Observer Engine
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    let id = entry.target.getAttribute('id');
+                    
+                    // Keep the single 'Work' link active across all gallery subsections
+                    if (id === 'ai-series' || id === 'ai-reels' || id === 'ai-paintings' || id === 'ai-templates') {
+                        id = 'work';
+                    }
+                    
+                    const activeLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+                    if (activeLink) activeLink.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        sections.forEach(section => observer.observe(section));
+
+        // 2. Linear Carousel Multi-Track Sliding Logic
+        function scrollCarousel(trackId, direction) {
+            const track = document.getElementById(trackId);
+            const scrollAmount = 350; 
+            if (direction === 1) track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            else track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+
+        // 3. Liquid Glass Action Button Interceptor
+        function handleLinkClick(event, element) {
+            event.preventDefault(); 
+            element.classList.add('clicked');
+            const destination = element.getAttribute('href');
+            setTimeout(() => { window.location.href = destination; }, 250);
+        }
+
+        // 4. Standard Static Frame Lightbox Functions
+        function openLightbox(cardElement) {
+            const imgSrc = cardElement.querySelector('img').src;
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox').classList.add('active');
+        }
+        function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+
+        // 5. Interactive 3D FlipBook Engine 
+        function openBook(cardElement) {
+            const images = cardElement.getAttribute('data-pages').split(',').map(s => s.trim());
+            document.getElementById('book-img-cover').src = images[0];
+            document.getElementById('book-img-cover-back').src = images[1];
+            document.getElementById('book-img-left').src = images[1];
+            document.getElementById('book-img-right').src = images[2];
+            document.getElementById('flip-page').classList.remove('flipped');
+            document.getElementById('book-lightbox').classList.add('active');
+        }
+        function closeBookLightbox() {
+            document.getElementById('book-lightbox').classList.remove('active');
+            setTimeout(() => { document.getElementById('flip-page').classList.remove('flipped'); }, 300);
+        }
+        function turnPage(direction) {
+            const flipPage = document.getElementById('flip-page');
+            if (direction === 1) flipPage.classList.add('flipped');
+            else flipPage.classList.remove('flipped');
+        }
+    </script>
+</body>
+</html>
