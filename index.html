@@ -202,68 +202,89 @@
         .book-btn { font-family: sans-serif; font-size: 14px; font-weight: bold; color: white; padding: 12px 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.5); background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s; }
         .book-btn:hover { background: #d4af37; color: black; border-color: #d4af37; }
 
-        /* =========================================
+      /* =========================================
            📱 MOBILE RESPONSIVE DESIGN FIX
            ========================================= */
         @media screen and (max-width: 1024px) {
-            /* 1. Header & Navigation */
-            .static-logo { display: none; } /* Hides logo to save screen space */
-            .glass-nav-container { width: 90%; top: 15px; overflow-x: auto; white-space: nowrap; padding: 10px; }
-            .nav-links { justify-content: flex-start; }
+            /* 1. Header & Navigation Fixes (Centered properly) */
+            .static-logo { display: none; } 
+            .glass-nav-container { 
+                width: max-content; 
+                max-width: 95%; 
+                top: 15px; 
+                overflow-x: auto; 
+                white-space: nowrap; 
+                padding: 10px 20px; 
+                left: 50%; 
+                transform: translateX(-50%); 
+            }
+            .nav-links { justify-content: center; }
             .nav-links a { font-size: 14px; padding: 8px 15px; }
 
-            /* 2. Home Page Resize */
-            #home { padding: 120px 5% 50px 5%; justify-content: center; }
-            .hero-content { width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
-            .main-title-block { flex-direction: column; align-items: center; margin-right: 0; }
-            .ai-part { margin-right: 0; margin-bottom: 10px; }
-            .ai-text { font-size: 130px; }
-            .crown-icon { font-size: 35px; top: -30px; }
-            .video-film-text { font-size: 50px; background-size: 100% auto; }
-            .maker-text { font-size: 65px; letter-spacing: 0; }
-            .name-text { font-size: 35px; margin-left: 0; }
-            .subtitle-divider { justify-content: center; margin-left: 0; }
+            /* 2. Home Page Resize (Moved to Top Left) */
+            #home { padding: 100px 5% 50px 8%; justify-content: flex-start; align-items: flex-start; }
+            .hero-content { width: 100%; display: flex; flex-direction: column; align-items: flex-start; text-align: left; margin-top: 20px; }
+            .main-title-block { flex-direction: column; align-items: flex-start; margin-right: 0; }
+            .ai-part { margin-right: 0; margin-bottom: -15px; }
+            .ai-text { font-size: 110px; }
+            .crown-icon { font-size: 30px; top: -25px; left: 50%; transform: translateX(-50%); }
+            .video-film-text { font-size: 45px; background-size: 200% auto; }
+            .maker-text { font-size: 55px; letter-spacing: 0; }
+            .name-text { font-size: 30px; margin-left: 0; margin-top: 10px; }
+            .subtitle-divider { justify-content: flex-start; margin-left: 0; }
 
             /* 3. Section Titles & Spacing */
             section { min-height: auto; padding-top: 100px; padding-bottom: 50px; }
-            .work-title { font-size: 45px; text-align: center; margin-left: 0; margin-bottom: 20px; }
+            .work-title { font-size: 40px; text-align: left; margin-left: 5%; margin-bottom: 20px; }
             
             /* 4. Carousels & Sliders */
             .carousel-wrapper { padding: 0; }
-            .slide-arrow { display: none; } /* Hides arrows on mobile; users swipe naturally */
+            .slide-arrow { display: none; }
             .carousel-track { width: 100%; padding: 20px; }
-            
-            /* Masonry (Paintings) Layout Fix for Mobile */
             .masonry-track { height: auto; flex-direction: row; flex-wrap: nowrap; overflow-x: auto; }
-            .glass-frame { width: 280px !important; height: 350px !important; }
+            .glass-frame { width: 260px !important; height: 340px !important; }
 
             /* 5. Services Page */
             #services { flex-direction: column; padding: 100px 5% 50px; }
-            .services-huge-title { font-size: 60px; margin-bottom: 20px; text-align: center; }
+            .services-huge-title { font-size: 55px; margin-bottom: 20px; text-align: center; }
             .services-wrapper { width: 100%; }
             .services-glass-box { padding: 30px 20px; }
             .services-glass-box li { font-size: 16px; margin-bottom: 10px; }
-            .services-glass-box li::before { font-size: 20px; margin-right: 10px; }
 
-            /* 6. Contact Page */
+            /* 6. Contact Page (Email & WA on one line) */
             #contact { padding: 100px 5% 50px; }
             .contact-wrapper { width: 100%; }
-            .contact-glass-box { padding: 30px 20px; align-items: center; text-align: center; }
-            .contact-name { font-size: 35px; }
-            .contact-detail { font-size: 18px; }
-            .tools-title { font-size: 26px; }
+            .contact-glass-box { padding: 30px 15px; align-items: center; text-align: center; }
+            .contact-name { font-size: 30px; }
+            .contact-detail { font-size: 16px; }
+            .tools-title { font-size: 24px; }
             .tools-row { flex-wrap: wrap; justify-content: center; gap: 15px; }
-            .tool-item img { width: 50px; height: 50px; }
+            .tool-item img { width: 45px; height: 45px; }
             .tool-item span { font-size: 12px; }
-            .contact-footer { flex-direction: column; gap: 20px; align-items: center; }
-            .contact-info-item { font-size: 16px; }
+            
+            /* Contact Footer Alignment */
+            .contact-footer { 
+                flex-direction: row; /* Forces them onto one line */
+                flex-wrap: nowrap;
+                justify-content: center; 
+                gap: 15px; 
+                width: 100%; 
+            }
+            .contact-info-item { font-size: 12px; gap: 5px; }
+            .contact-info-item img { width: 20px; height: 20px; }
 
-            /* 7. Popups (Lightbox / Book) */
-            .book-container { width: 95vw; height: auto; flex-direction: column; }
-            .book-half { width: 100%; height: 300px; border-radius: 5px; margin-bottom: 10px; }
-            .book-flip-page { display: none; } /* Disables 3D flip animation on mobile, shows static inside pages to prevent layout breaking */
-            .book-controls { position: relative; bottom: 0; margin-top: 15px; }
-        }
+            /* 7. Book 3D Viewer Mobile Fix (Restores Open Book Look) */
+            .book-container { 
+                width: 90vw; 
+                height: 60vw; /* Perfect mathematical ratio for open book on mobile */
+                flex-direction: row; 
+                margin-top: -40px; 
+            }
+            .book-half { width: 50%; height: 100%; border-radius: 5px; margin-bottom: 0; }
+            .book-flip-page { display: block; } /* Re-enables the 3D flipping page */
+            .book-controls { bottom: -60px; width: 100%; justify-content: center; flex-direction: row; }
+            .book-btn { padding: 8px 20px; font-size: 12px; }
+        } 
     </style>
 </head>
 <body>
@@ -528,6 +549,30 @@
             const flipPage = document.getElementById('flip-page');
             if (direction === 1) flipPage.classList.add('flipped');
             else flipPage.classList.remove('flipped');
+        }
+        // 6. Mobile Touch Swipe Detection for 3D Book (NEW CODE ADDED HERE)
+        let touchstartX = 0;
+        let touchendX = 0;
+        const bookLightbox = document.getElementById('book-lightbox');
+        
+        bookLightbox.addEventListener('touchstart', function(event) {
+            touchstartX = event.changedTouches[0].screenX;
+        }, false);
+        
+        bookLightbox.addEventListener('touchend', function(event) {
+            touchendX = event.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+        
+        function handleSwipe() {
+            // If swiped left, go to Next Page
+            if (touchendX < touchstartX - 50) {
+                turnPage(1);
+            }
+            // If swiped right, go to Previous Page
+            if (touchendX > touchstartX + 50) {
+                turnPage(-1);
+            }
         }
     </script>
 </body>
