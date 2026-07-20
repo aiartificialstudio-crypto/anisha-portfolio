@@ -231,6 +231,15 @@
             background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s; 
         }
         .book-btn:hover { background: #d4af37; color: black; border-color: #d4af37; }
+        
+        /* === SERIES LIST POP-UP (16:9 Rows) === */
+        #series-lightbox { align-items: flex-start; overflow-y: auto; padding: 80px 0; }
+        .series-list-container { width: 90%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; z-index: 10005; }
+        .series-row { display: flex; align-items: center; gap: 30px; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); }
+        .series-thumb { width: 280px; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .series-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .series-info { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; }
+        .series-info h3 { color: #fff; font-family: sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 1px; }
 
       /* =========================================
            📱 MOBILE RESPONSIVE DESIGN FIX
@@ -342,6 +351,11 @@
                 margin-top: 0;
             }
             .book-btn { padding: 12px 20px; font-size: 13px; }
+            /* 8. Series Pop-Up Mobile Fix */
+            #series-lightbox { padding: 80px 0 40px 0; }
+            .series-row { flex-direction: column; align-items: flex-start; gap: 15px; padding: 15px; }
+            .series-thumb { width: 100%; max-width: 100%; }
+            .series-info h3 { font-size: 18px; }
         } 
     </style>
 </head>
@@ -402,8 +416,8 @@
             <button class="slide-arrow left" onclick="scrollCarousel('track2', -1)">&#10094;</button>
             <div class="carousel-track" id="track2">
                 <div class="poster-card"><img src="series1.jpg" alt="Series 1"><a href="https://drive.google.com/file/d/15jKTZ4op6aVOnJIYHCce83ELJYIwjUm7/view?usp=drivesdk" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
-                <div class="poster-card"><img src="series11.jpg" alt="Series 11"><a href="https://drive.google.com/file/d/1Ne7EpmfZ6ETyQOs_4SHHgzkzBbP7JQ83/view?usp=drivesdk" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
-                <div class="poster-card"><img src="series2.jpg" alt="Series 2"><a href="https://youtu.be/qLgiNVI_Tqc?si=OSyCKSc0ikXZ6Fu7" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
+               <div class="poster-card"><img src="NEW_IMAGE_NAME.jpg" alt="Series 2"><a href="#" class="glass-btn btn-blue" onclick="openSeriesList(event)">Click here</a></div>
+                <div class="poster-card"><img src="series22.jpg" alt="Series 22"><a href="https://youtu.be/qLgiNVI_Tqc?si=OSyCKSc0ikXZ6Fu7" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
                 <div class="poster-card"><img src="series3.jpg" alt="Series 3"><div class="glass-btn btn-red">COMING SOON</div></div>
 
                             </div>
@@ -542,7 +556,39 @@
             <button class="book-btn" onclick="turnPage(1)">NEXT PAGE &#10095;</button>
         </div>
     </div>
+<!-- Series List Pop-Up Overlay -->
+    <div id="series-lightbox" class="fullscreen-overlay">
+        <button class="back-btn" onclick="closeSeriesList()">&#10094; BACK</button>
+        
+        <div class="series-list-container">
+            <!-- SECTION 1 -->
+            <div class="series-row">
+                <div class="series-thumb"><img src="thumb1.jpg" alt="Series 1"></div>
+                <div class="series-info">
+                    <h3>Series 1</h3>
+                    <a href="PUT_YOUR_LINK_HERE" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a>
+                </div>
+            </div>
 
+            <!-- SECTION 2 -->
+            <div class="series-row">
+                <div class="series-thumb"><img src="thumb2.jpg" alt="Series 2"></div>
+                <div class="series-info">
+                    <h3>Series 2</h3>
+                    <a href="PUT_YOUR_LINK_HERE" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a>
+                </div>
+            </div>
+
+            <!-- SECTION 3 -->
+            <div class="series-row">
+                <div class="series-thumb"><img src="thumb3.jpg" alt="Series 3"></div>
+                <div class="series-info">
+                    <h3>Series 3</h3>
+                    <a href="PUT_YOUR_LINK_HERE" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // 1. Scroll Spy Navigation Highlight Observer Engine
@@ -634,6 +680,14 @@
             if (touchendX > touchstartX + 50) {
                 turnPage(-1);
             }
+        }
+        // 7. Series List Pop-Up Engine
+        function openSeriesList(event) {
+            event.preventDefault();
+            document.getElementById('series-lightbox').classList.add('active');
+        }
+        function closeSeriesList() {
+            document.getElementById('series-lightbox').classList.remove('active');
         }
     </script>
 </body>
