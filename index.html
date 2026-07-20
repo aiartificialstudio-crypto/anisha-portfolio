@@ -232,15 +232,19 @@
         }
         .book-btn:hover { background: #d4af37; color: black; border-color: #d4af37; }
         
-        /* === SERIES LIST POP-UP (16:9 Rows) === */
+      /* === SERIES LIST POP-UP (16:9 Rows) === */
         #series-lightbox { align-items: flex-start; overflow-y: auto; padding: 80px 0; }
         .series-list-container { width: 90%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; z-index: 10005; }
         .series-row { display: flex; align-items: center; gap: 30px; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); }
         .series-thumb { width: 280px; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .series-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .series-info { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; }
-        .series-info h3 { color: #fff; font-family: sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 1px; }
-
+        
+        /* FIX 1: Desktop Alignment (Title above, Button exactly below) */
+        .series-info { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; width: 100%; }
+        .series-info h3 { color: #fff; font-family: sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 1px; line-height: 1.2; margin: 0; }
+        
+        /* FIX 2: Stops the 3 buttons from stacking on top of each other! */
+        #series-lightbox .glass-btn { position: relative; bottom: auto; margin-top: 5px; padding: 10px 25px; }
       /* =========================================
            📱 MOBILE RESPONSIVE DESIGN FIX
            ========================================= */
@@ -355,8 +359,11 @@
             #series-lightbox { padding: 80px 0 40px 0; }
             .series-row { flex-direction: column; align-items: flex-start; gap: 15px; padding: 15px; }
             .series-thumb { width: 100%; max-width: 100%; }
-            .series-info h3 { font-size: 18px; }
-        } 
+            
+            /* FIX 3: Mobile Alignment (Title and Button on the SAME LINE) */
+            .series-info { flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; width: 100%; }
+            .series-info h3 { font-size: 16px; flex: 1; /* Allows text to take up the left space */ }
+            #series-lightbox .glass-btn { margin-top: 0; padding: 8px 16px; font-size: 12px; flex-shrink: 0; /* Prevents button from squishing */ }        } 
     </style>
 </head>
 <body>
