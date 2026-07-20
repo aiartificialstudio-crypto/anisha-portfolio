@@ -231,42 +231,7 @@
             background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s; 
         }
         .book-btn:hover { background: #d4af37; color: black; border-color: #d4af37; }
-/* === Series List Overlay Layout === */
-        .series-list-container {
-            display: flex; flex-direction: column; gap: 20px;
-            width: 85%; max-width: 900px;
-            background: rgba(10, 10, 15, 0.85);
-            padding: 40px; border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
-        .series-list-item {
-            display: flex; align-items: center; gap: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 20px;
-        }
-        .series-list-item:last-child { border-bottom: none; padding-bottom: 0; }
-        
-        /* 16:9 Image Frame */
-        .series-list-img {
-            width: 320px; aspect-ratio: 16/9; flex-shrink: 0;
-            border-radius: 12px; overflow: hidden;
-            border: 2px solid rgba(255,255,255,0.1);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .series-list-img img { width: 100%; height: 100%; object-fit: cover; }
-        
-        /* Text and Button Wrapper */
-        .series-list-content {
-            display: flex; flex-direction: column; align-items: flex-start; gap: 15px;
-        }
-        .series-list-title {
-            font-size: 24px; color: #ddd; font-family: sans-serif; font-weight: 400;
-        }
-        
-        /* Modifying the Glass Button specifically for this list */
-        .list-btn { position: relative; bottom: 0; padding: 10px 35px; font-size: 13px; }
+
       /* =========================================
            📱 MOBILE RESPONSIVE DESIGN FIX
            ========================================= */
@@ -378,11 +343,6 @@
             }
             .book-btn { padding: 12px 20px; font-size: 13px; }
         } 
-        /* Series List Mobile Layout */
-            .series-list-container { width: 95%; padding: 20px; gap: 15px; }
-            .series-list-item { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .series-list-img { width: 100%; height: auto; aspect-ratio: 16/9; }
-            .series-list-title { font-size: 18px; }
     </style>
 </head>
 <body>
@@ -442,11 +402,7 @@
             <button class="slide-arrow left" onclick="scrollCarousel('track2', -1)">&#10094;</button>
             <div class="carousel-track" id="track2">
                 <div class="poster-card"><img src="series1.jpg" alt="Series 1"><a href="https://drive.google.com/file/d/15jKTZ4op6aVOnJIYHCce83ELJYIwjUm7/view?usp=drivesdk" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
-               <div class="poster-card">
-                    <img src="series22.jpg" alt="Series 22">
-                    <!-- Changed to "CLICK HERE" and added the openSeriesList() trigger -->
-                    <a href="#" class="glass-btn btn-blue" onclick="openSeriesList(event)">CLICK HERE</a>
-                </div>
+                <div class="poster-card"><img src="series11.jpg" alt="Series 11"><a href="https://drive.google.com/file/d/1Ne7EpmfZ6ETyQOs_4SHHgzkzBbP7JQ83/view?usp=drivesdk" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
                 <div class="poster-card"><img src="series2.jpg" alt="Series 2"><a href="https://youtu.be/qLgiNVI_Tqc?si=OSyCKSc0ikXZ6Fu7" class="glass-btn btn-blue" onclick="handleLinkClick(event, this)">WATCH NOW</a></div>
                 <div class="poster-card"><img src="series3.jpg" alt="Series 3"><div class="glass-btn btn-red">COMING SOON</div></div>
 
@@ -587,39 +543,7 @@
         </div>
     </div>
 
-<!-- Series List Interactive Menu -->
-    <div id="series-list-lightbox" class="fullscreen-overlay">
-        <button class="back-btn" onclick="closeSeriesList()">&#10094; BACK</button>
-        
-        <div class="series-list-container">
-            <!-- Section 1 -->
-            <div class="series-list-item">
-                <div class="series-list-img"><img src="16-9-image-1.jpg" alt="Series 1 Image"></div>
-                <div class="series-list-content">
-                    <div class="series-list-title">Series 1</div>
-                    <a href="link-to-series1.html" class="glass-btn btn-blue list-btn" onclick="handleLinkClick(event, this)">WATCH NOW</a>
-                </div>
-            </div>
 
-            <!-- Section 2 -->
-            <div class="series-list-item">
-                <div class="series-list-img"><img src="16-9-image-2.jpg" alt="Series 2 Image"></div>
-                <div class="series-list-content">
-                    <div class="series-list-title">Series 2</div>
-                    <a href="link-to-series2.html" class="glass-btn btn-blue list-btn" onclick="handleLinkClick(event, this)">WATCH NOW</a>
-                </div>
-            </div>
-
-            <!-- Section 3 -->
-            <div class="series-list-item">
-                <div class="series-list-img"><img src="16-9-image-3.jpg" alt="Series 3 Image"></div>
-                <div class="series-list-content">
-                    <div class="series-list-title">Series 3</div>
-                    <a href="link-to-series3.html" class="glass-btn btn-blue list-btn" onclick="handleLinkClick(event, this)">WATCH NOW</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         // 1. Scroll Spy Navigation Highlight Observer Engine
         const sections = document.querySelectorAll('section');
@@ -710,14 +634,6 @@
             if (touchendX > touchstartX + 50) {
                 turnPage(-1);
             }
-            // 8. Series List Menu Engine
-        function openSeriesList(event) {
-            event.preventDefault(); // Prevents page from jumping
-            document.getElementById('series-list-lightbox').classList.add('active');
-        }
-        function closeSeriesList() {
-            document.getElementById('series-list-lightbox').classList.remove('active');
-        }
         }
     </script>
 </body>
